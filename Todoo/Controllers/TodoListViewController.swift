@@ -128,6 +128,6 @@ extension TodoListViewController: UISearchBarDelegate, UISearchDisplayDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.text!.count == 0 ? loadTasks() : search(using: searchBar)
     }
-
+    
     
 }
