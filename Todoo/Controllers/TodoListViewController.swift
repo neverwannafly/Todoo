@@ -42,11 +42,10 @@ class TodoListViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+//        deleteTasks(indexPath: indexPath)
         taskArray[indexPath.row].done = !taskArray[indexPath.row].done
-        saveTasks()
-        tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
-    }
+    }
     
     //MARK - Add New Items
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -78,13 +77,13 @@ class TodoListViewController : UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-
     func saveTasks() {
         do {
             try context.save()
         } catch {
             print(error)
         }
+        tableView.reloadData()
     }
     
     func loadTasks() {
@@ -96,6 +95,11 @@ class TodoListViewController : UITableViewController {
         }
     }
     
+    func deleteTasks(indexPath: IndexPath) {
+        context.delete(taskArray[indexPath.row])
+        taskArray.remove(at: indexPath.row)
+        saveTasks()
+    }
     
 }
 
