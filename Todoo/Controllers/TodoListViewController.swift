@@ -11,7 +11,7 @@ import UIKit
 class TodoListViewController : UITableViewController {
 
     var taskArray = [Task]()
-    let defaults = UserDefaults.standard
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("items.plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +52,7 @@ class TodoListViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         taskArray[indexPath.row].done = !taskArray[indexPath.row].done
+        saveTasks()
         tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -66,9 +67,12 @@ class TodoListViewController : UITableViewController {
         let action = UIAlertAction(title: "Add Task", style: .default) { (action) in
             if textField.text != nil && textField.text != "" {
                 let newTask = Task()
+                
                 newTask.title = textField.text!
                 self.taskArray.append(newTask)
-                self.defaults.set(self.taskArray, forKey: "TodoListArray")
+                
+                saveTasks()
+                
                 self.tableView.reloadData()
             }
         }
@@ -81,7 +85,20 @@ class TodoListViewController : UITableViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-    
+    
 
+    func saveTasks() {
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(taskArray)
+            try data.write(to: dataFilePath!)
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    
 }
 
