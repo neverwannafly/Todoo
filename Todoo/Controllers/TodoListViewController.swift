@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListViewController : UITableViewController {
 
     var taskArray = [Task]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("items.plist")
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,8 @@ class TodoListViewController : UITableViewController {
         
         let action = UIAlertAction(title: "Add Task", style: .default) { (action) in
             if textField.text != nil && textField.text != "" {
-                let newTask = Task()
+                
+                let newTask = Task(context: self.context)
                 
                 newTask.title = textField.text!
                 self.taskArray.append(newTask)
@@ -78,25 +80,19 @@ class TodoListViewController : UITableViewController {
     
 
     func saveTasks() {
-        let encoder = PropertyListEncoder()
-        
         do {
-            let data = try encoder.encode(taskArray)
-            try data.write(to: dataFilePath!)
-        }
-        catch {
+            try context.save()
+        } catch {
             print(error)
         }
     }
     
     func loadTasks() {
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                taskArray = try decoder.decode([Task].self, from: data)
-            } catch {
-                print(error)
-            }
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
+        do {
+            taskArray = try context.fetch(request)
+        } catch {
+            print(error)
         }
     }
     
