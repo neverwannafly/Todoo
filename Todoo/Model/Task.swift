@@ -8,6 +8,7 @@
 
 import Foundation
 
-class {
-    
+class Task {
+    var title: String = ""
+    var done: Bool = false
 }
