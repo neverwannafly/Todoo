@@ -11,17 +11,11 @@ import CoreData
 
 class TodoListViewController : UITableViewController {
 
+    @IBOutlet weak var searchField: UISearchBar!
     var taskArray = [Task]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        loadTasks()
-        
-    }
 
-    //MARK - Tableview Datasource Methods
+    //MARK: - Tableview Datasource Methods
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
@@ -38,16 +32,16 @@ class TodoListViewController : UITableViewController {
         return taskArray.count
     }
     
-    //MARK - Tableview Delegate Methods
+    //MARK: - Tableview Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        deleteTasks(indexPath: indexPath)
         taskArray[indexPath.row].done = !taskArray[indexPath.row].done
+        saveTasks()
         tableView.deselectRow(at: indexPath, animated: true)
-    }
+    }
     
-    //MARK - Add New Items
+    //MARK: - Add New Items
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         var textField = UITextField()
@@ -77,6 +71,8 @@ class TodoListViewController : UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //MARK: - CRUD operations on database
+    
     func saveTasks() {
         do {
             try context.save()
@@ -86,13 +82,14 @@ class TodoListViewController : UITableViewController {
         tableView.reloadData()
     }
     
-    func loadTasks() {
-        let request: NSFetchRequest<Task> = Task.fetchRequest()
+    func loadTasks(with request: NSFetchRequest<Task> = Task.fetchRequest()) {
+
         do {
             taskArray = try context.fetch(request)
         } catch {
             print(error)
         }
+        tableView.reloadData()
     }
     
     func deleteTasks(indexPath: IndexPath) {
@@ -101,5 +98,36 @@ class TodoListViewController : UITableViewController {
         saveTasks()
     }
     
+    
 }
 
+//MARK: - SearchBar extension
+extension TodoListViewController: UISearchBarDelegate, UISearchDisplayDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        searchField.delegate = self
+        loadTasks()
+        
+    }
+    
+    func search(using searchBar: UISearchBar) {
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        loadTasks(with: request)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text!.count == 0 ? loadTasks() : search(using: searchBar)
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.text!.count == 0 ? loadTasks() : search(using: searchBar)
+    }
+
+    
+}
