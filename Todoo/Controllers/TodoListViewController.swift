@@ -16,17 +16,7 @@ class TodoListViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let newTask1 = Task()
-        newTask1.title = "Find Mike"
-        taskArray.append(newTask1)
-        
-        let newTask2 = Task()
-        newTask2.title = "Destroy Asgard"
-        taskArray.append(newTask2)
-        
-        let newTask3 = Task()
-        newTask3.title = "Fuck Rabbit"
-        taskArray.append(newTask3)
+        loadTasks()
         
     }
 
@@ -71,7 +61,7 @@ class TodoListViewController : UITableViewController {
                 newTask.title = textField.text!
                 self.taskArray.append(newTask)
                 
-                saveTasks()
+                self.saveTasks()
                 
                 self.tableView.reloadData()
             }
@@ -96,6 +86,17 @@ class TodoListViewController : UITableViewController {
         }
         catch {
             print(error)
+        }
+    }
+    
+    func loadTasks() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                taskArray = try decoder.decode([Task].self, from: data)
+            } catch {
+                print(error)
+            }
         }
     }
     
