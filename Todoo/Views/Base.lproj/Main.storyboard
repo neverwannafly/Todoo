@@ -42,7 +42,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Tasks" id="Cbq-9T-NrM">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wjD-eB-OeQ">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="GT0-BC-Svj" id="MAK-9p-4Jf"/>
                             </connections>
@@ -81,7 +80,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Todoo" id="u4J-1a-a1L">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="j7I-rI-zcr">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="f9U-13-vsf" id="hEv-Kq-27w"/>
                             </connections>
@@ -100,8 +98,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k8U-zr-WrG" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z7d-PL-nPQ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="z7d-PL-nPQ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">

@@ -37,9 +37,10 @@ class TodoListViewController : SwipeTableViewController {
             cell.textLabel?.text = "No Tasks Added"
         }
         
-        if let color = FlatSkyBlue().darken(byPercentage: CGFloat(indexPath.row)/CGFloat(tasks!.count+1)) {
+        if let color = UIColor(hexString: selectedCategory!.color)!.darken(byPercentage: CGFloat(indexPath.row)/CGFloat(tasks!.count+1)) {
             cell.backgroundColor = color
             cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+            cell.tintColor = ContrastColorOf(color, returnFlat: true)
         }
         
         return cell
@@ -134,6 +135,21 @@ extension TodoListViewController: UISearchBarDelegate, UISearchDisplayDelegate {
         super.viewDidLoad()
         
         searchField.delegate = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let colorHex = selectedCategory?.color {
+            title = selectedCategory!.name
+            guard let navBar = navigationController?.navigationBar else {
+                fatalError("Nav Controller doesnt exist")
+            }
+            navBar.barTintColor = UIColor(hexString: colorHex)
+            navBar.tintColor = ContrastColorOf(navBar.barTintColor!, returnFlat: true)
+            navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: ContrastColorOf(navBar.barTintColor!, returnFlat: true)]
+            searchField.barTintColor = UIColor(hexString: colorHex)
+        }
+        
     }
     
     func search(using searchBar: UISearchBar) {

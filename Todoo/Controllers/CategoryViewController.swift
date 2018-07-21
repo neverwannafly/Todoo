@@ -22,6 +22,15 @@ class CategoryViewController: SwipeTableViewController {
         loadCategories()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        guard let navBar = navigationController?.navigationBar else {
+            fatalError("Nav Controller doesnt exist")
+        }
+        navBar.barTintColor = UIColor(hexString: "1D9BF6")
+        
+    }
 
     //MARK: - TableView Datasource methods
     
