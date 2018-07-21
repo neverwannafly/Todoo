@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class TodoListViewController : SwipeTableViewController {
 
@@ -34,6 +35,11 @@ class TodoListViewController : SwipeTableViewController {
             cell.accessoryType = task.done ? .checkmark : .none
         } else {
             cell.textLabel?.text = "No Tasks Added"
+        }
+        
+        if let color = FlatSkyBlue().darken(byPercentage: CGFloat(indexPath.row)/CGFloat(tasks!.count+1)) {
+            cell.backgroundColor = color
+            cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
         }
         
         return cell
