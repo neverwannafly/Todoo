@@ -157,8 +157,9 @@ extension TodoListViewController: UISearchBarDelegate, UISearchDisplayDelegate {
             fatalError("Nav Controller doesnt exist")
         }
         navBar.barTintColor = color
-        navBar.tintColor = FlatWhite()
-        navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: FlatWhite()]
+        let contrastingColor = ContrastColorOf(color, returnFlat: true)
+        navBar.tintColor = contrastingColor
+        navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: contrastingColor]
         
     }
     
