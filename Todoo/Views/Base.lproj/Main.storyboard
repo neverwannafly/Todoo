@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,6 +79,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Todoo" id="u4J-1a-a1L">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="j7I-rI-zcr">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="f9U-13-vsf" id="hEv-Kq-27w"/>
                             </connections>
