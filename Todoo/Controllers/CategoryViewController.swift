@@ -105,7 +105,7 @@ class CategoryViewController: SwipeTableViewController {
     
     func loadCategories() {
         
-        categories = realm.objects(Category.self).sorted(byKeyPath: "dateCreated", ascending: false)
+        categories = realm.objects(Category.self).sorted(byKeyPath: "dateCreated", ascending: true)
         
         tableView.reloadData()
     }

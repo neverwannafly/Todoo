@@ -109,7 +109,7 @@ class TodoListViewController : SwipeTableViewController {
     
     func loadTasks() {
 
-        tasks = selectedCategory?.tasks.sorted(byKeyPath: "dateCreated", ascending: false)
+        tasks = selectedCategory?.tasks.sorted(byKeyPath: "dateCreated", ascending: true)
         
         tableView.reloadData()
     }
@@ -164,7 +164,7 @@ extension TodoListViewController: UISearchBarDelegate, UISearchDisplayDelegate {
     }
     
     func search(using searchBar: UISearchBar) {
-        tasks = tasks?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: false)
+        tasks = tasks?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
         tableView.reloadData()
     }
     
