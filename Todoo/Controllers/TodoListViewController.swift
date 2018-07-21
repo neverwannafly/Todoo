@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TodoListViewController : UITableViewController {
+class TodoListViewController : SwipeTableViewController {
 
     @IBOutlet weak var searchField: UISearchBar!
     
@@ -19,6 +19,7 @@ class TodoListViewController : UITableViewController {
     var selectedCategory: Category? {
         didSet {
             loadTasks()
+            
         }
     }
     
@@ -26,7 +27,7 @@ class TodoListViewController : UITableViewController {
     //MARK: - Tableview Datasource Methods
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         if let task = tasks?[indexPath.row] {
             cell.textLabel?.text = task.title
@@ -104,6 +105,18 @@ class TodoListViewController : UITableViewController {
         tasks = selectedCategory?.tasks.sorted(byKeyPath: "dateCreated", ascending: false)
         
         tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let taskDeletion = self.tasks?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(taskDeletion)
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
     
 }
