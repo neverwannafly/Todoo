@@ -141,14 +141,24 @@ extension TodoListViewController: UISearchBarDelegate, UISearchDisplayDelegate {
     override func viewWillAppear(_ animated: Bool) {
         if let colorHex = selectedCategory?.color {
             title = selectedCategory!.name
-            guard let navBar = navigationController?.navigationBar else {
-                fatalError("Nav Controller doesnt exist")
-            }
-            navBar.barTintColor = UIColor(hexString: colorHex)
-            navBar.tintColor = ContrastColorOf(navBar.barTintColor!, returnFlat: true)
-            navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: ContrastColorOf(navBar.barTintColor!, returnFlat: true)]
+            updateNavBar(withHexCode: colorHex)
             searchField.barTintColor = UIColor(hexString: colorHex)
         }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        updateNavBar(withHexCode: "1D9BF6")
+    }
+    
+    func updateNavBar(withHexCode colorHexCode: String) {
+        guard let color = UIColor(hexString: colorHexCode) else {fatalError("Yayay!")}
+        guard let navBar = navigationController?.navigationBar else {
+            fatalError("Nav Controller doesnt exist")
+        }
+        navBar.barTintColor = color
+        navBar.tintColor = FlatWhite()
+        navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: FlatWhite()]
         
     }
     
