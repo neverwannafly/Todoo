@@ -10,10 +10,10 @@
 		9307920F20FFAAE3004D51B3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9307920E20FFAAE3004D51B3 /* Category.swift */; };
 		9307921120FFAD7A004D51B3 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9307921020FFAD7A004D51B3 /* Task.swift */; };
 		9307921320FFC517004D51B3 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9307921220FFC517004D51B3 /* SwipeTableViewController.swift */; };
+		9320C9F921039268006E5042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9320C9F821039268006E5042 /* Assets.xcassets */; };
 		93F0510220FE446400A3F6A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0510120FE446400A3F6A8 /* AppDelegate.swift */; };
 		93F0510420FE446400A3F6A8 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0510320FE446400A3F6A8 /* TodoListViewController.swift */; };
 		93F0510720FE446400A3F6A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F0510520FE446400A3F6A8 /* Main.storyboard */; };
-		93F0510920FE446600A3F6A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93F0510820FE446600A3F6A8 /* Assets.xcassets */; };
 		93F0510C20FE446600A3F6A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F0510A20FE446600A3F6A8 /* LaunchScreen.storyboard */; };
 		93F0513E20FE8DBC00A3F6A8 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0513D20FE8DBC00A3F6A8 /* CategoryViewController.swift */; };
 		CDF2C14EAF3A411B521E8364 /* Pods_Todoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A465E44386D59881896D2F6D /* Pods_Todoo.framework */; };
@@ -24,11 +24,11 @@
 		9307920E20FFAAE3004D51B3 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		9307921020FFAD7A004D51B3 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		9307921220FFC517004D51B3 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
+		9320C9F821039268006E5042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93F050FE20FE446400A3F6A8 /* Todoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93F0510120FE446400A3F6A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93F0510320FE446400A3F6A8 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		93F0510620FE446400A3F6A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		93F0510820FE446600A3F6A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93F0510B20FE446600A3F6A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93F0510D20FE446600A3F6A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93F0513D20FE8DBC00A3F6A8 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -117,8 +117,8 @@
 		93F0511820FE635100A3F6A8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				93F0510820FE446600A3F6A8 /* Assets.xcassets */,
 				93F0510A20FE446600A3F6A8 /* LaunchScreen.storyboard */,
+				9320C9F821039268006E5042 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93F0510C20FE446600A3F6A8 /* LaunchScreen.storyboard in Resources */,
-				93F0510920FE446600A3F6A8 /* Assets.xcassets in Resources */,
+				9320C9F921039268006E5042 /* Assets.xcassets in Resources */,
 				93F0510720FE446400A3F6A8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
