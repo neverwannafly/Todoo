@@ -20,7 +20,6 @@ class TodoListViewController : SwipeTableViewController {
     var selectedCategory: Category? {
         didSet {
             loadTasks()
-            
         }
     }
     
@@ -37,12 +36,11 @@ class TodoListViewController : SwipeTableViewController {
             cell.textLabel?.text = "No Tasks Added"
         }
         
-        if let color = UIColor(hexString: selectedCategory!.color)!.darken(byPercentage: CGFloat(indexPath.row)/CGFloat(tasks!.count+1)) {
+        if let color = UIColor(hexString: selectedCategory!.color)!.darken(byPercentage: CGFloat(indexPath.row)/CGFloat(tasks!.count+2)) {
             cell.backgroundColor = color
             cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
             cell.tintColor = ContrastColorOf(color, returnFlat: true)
         }
-        
         return cell
     }
     
@@ -143,6 +141,7 @@ extension TodoListViewController: UISearchBarDelegate, UISearchDisplayDelegate {
             title = selectedCategory!.name
             updateNavBar(withHexCode: colorHex)
             searchField.barTintColor = UIColor(hexString: colorHex)
+            tableView.backgroundColor = UIColor(hexString: colorHex)
         }
         
     }

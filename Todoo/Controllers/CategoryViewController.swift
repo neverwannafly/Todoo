@@ -20,9 +20,13 @@ class CategoryViewController: SwipeTableViewController {
         super.viewDidLoad()
         
         loadCategories()
-        
-    }
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.backgroundColor = UIColor(hexString: "1D9BF6")
+    }
+    
     //MARK: - TableView Datasource methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,9 +41,6 @@ class CategoryViewController: SwipeTableViewController {
             cell.textLabel?.text = category.name
             cell.textLabel?.textColor = ContrastColorOf(HexColor(category.color)!, returnFlat: true)
             cell.backgroundColor = UIColor(hexString: category.color)
-        }else {
-            cell.textLabel?.text = "No Categories Added"
-            cell.backgroundColor = UIColor(hexString: "000000")
         }
         
         return cell
@@ -50,6 +51,7 @@ class CategoryViewController: SwipeTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToTasks", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
